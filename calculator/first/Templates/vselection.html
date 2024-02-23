@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Vehicle Selection{% endblock %}
+{% block content %}
+<style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                text-align: center;
+            }
+
+            #container {
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h2 {
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            select,
+            input {
+                width: 100%;
+                padding: 8px;
+                margin-top: 5px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+            }
+
+            button {
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 25px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        </style>
+
+        <div id="container">
+            <h2>Vehicle Selection</h2>
+            <form action="{% url 'output' %}" method="POST">
+                {% csrf_token %}
+                <label for="vehicleType">Select Vehicle Type</label>
+                <select id="vehicleType" name="vehicleType">
+                    <option value="bike">Bike</option>
+                    <option value="car">Car</option>
+                </select>
+
+                <label for="fuelType">Select Fuel Type</label>
+                <select id="fuelType" name="fuelType">
+                    <option value="petrol">Petrol</option>
+                    <option value="diesel">Diesel</option>
+                </select>
+
+                <label for="distance">Distance (in km)</label>
+                <input type="text" id="distance" name="distance" required>
+
+                <label for="mileage">Mileage (in km/l)</label>
+                <input type="text" id="mileage" name="mileage" required>
+
+                <label for="pricePerLitre">Price per Litre (in currency)</label>
+                <input type="text" id="pricePerLitre" name="pricePerLitre" required>
+
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+{% endblock %}
